@@ -3,216 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Franz Tools Hub</title>
+  <title>Franz Joshua’s Business Hub</title>
   <style>
-    /* ===== RESET ===== */
-    * {margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;}
-
     body {
-      background-color: #0d0d0d;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
       color: #f5f5f5;
-      line-height: 1.6;
     }
-
     header {
       text-align: center;
-      padding: 2rem 1rem;
-      background: linear-gradient(135deg, #000, #111);
-      border-bottom: 2px solid #ffd700;
+      padding: 2rem;
+      background: linear-gradient(90deg, #111, #222);
+      color: gold;
+      font-size: 1.8rem;
+      font-weight: bold;
     }
-    header h1 {
-      font-size: 2rem;
-      color: #ffd700;
-    }
-    header p {
-      color: #aaa;
-      margin-top: 0.5rem;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
+      padding: 2rem;
     }
-
     .card {
       background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 10px;
       padding: 1.5rem;
-      text-align: center;
-      transition: transform 0.3s, border-color 0.3s;
-      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .card:hover {
-      transform: translateY(-5px);
-      border-color: #ffd700;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
     }
-    .card h3 {
-      margin-bottom: 0.5rem;
-      color: #ffd700;
+    .card h2 {
+      color: gold;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
     }
     .card p {
-      color: #bbb;
       font-size: 0.95rem;
+      margin-bottom: 1rem;
     }
-
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #e6b800;
+    }
     footer {
       text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-      border-top: 1px solid #333;
-      color: #888;
+      padding: 1rem;
+      background: #111;
+      color: #aaa;
+      margin-top: 2rem;
       font-size: 0.9rem;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: #1a1a1a;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 500px;
-      text-align: center;
-      border: 1px solid #333;
-    }
-    .close-btn {
-      float: right;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #ffd700;
-    }
-    .close-btn:hover {
-      color: #fff;
-    }
-    button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 5px;
-      background: #ffd700;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #e6c200;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>⚡ Franz Tools Hub ⚡</h1>
-    <p>All-in-one free online tools</p>
+    🚀 Franz Joshua’s Million-Dollar Online Business Hub
   </header>
 
-  <main>
-    <div class="grid">
-      <div class="card" onclick="openTool('converter')">
-        <h3>File Converter</h3>
-        <p>Convert between PDF, DOCX, PNG, JPG and more.</p>
-      </div>
-      <div class="card" onclick="openTool('photo')">
-        <h3>Photo Enhancer</h3>
-        <p>Upscale and sharpen your photos automatically.</p>
-      </div>
-      <div class="card" onclick="openTool('video')">
-        <h3>Video Enhancer</h3>
-        <p>AI-based smoother and 4K upscaler.</p>
-      </div>
-      <div class="card" onclick="openTool('notes')">
-        <h3>Secure Notes</h3>
-        <p>Write and encrypt private notes instantly.</p>
-      </div>
-      <div class="card" onclick="openTool('password')">
-        <h3>Password Generator</h3>
-        <p>Create strong & unique passwords.</p>
-      </div>
-      <div class="card" onclick="openTool('qr')">
-        <h3>QR Generator</h3>
-        <p>Create QR codes for links or text.</p>
-      </div>
-      <div class="card" onclick="openTool('compress')">
-        <h3>Image Compressor</h3>
-        <p>Shrink images without losing quality.</p>
-      </div>
-      <div class="card" onclick="openTool('text2speech')">
-        <h3>Text to Speech</h3>
-        <p>Convert text into natural voice audio.</p>
-      </div>
-      <div class="card" onclick="openTool('ai')">
-        <h3>Mini AI Chat</h3>
-        <p>Ask simple questions, get smart answers.</p>
-      </div>
-      <div class="card" onclick="openTool('cloud')">
-        <h3>Cloud Storage (Demo)</h3>
-        <p>Temporary file saving tool.</p>
-      </div>
+  <section class="grid">
+    <div class="card">
+      <h2>1. AI-Powered File Converter</h2>
+      <p>Convert files instantly (PDF, DOCX, JPG, PNG) using smart AI. Free and easy to use.</p>
+      <a href="#" class="btn">Launch</a>
     </div>
-  </main>
-
-  <!-- Modal -->
-  <div id="toolModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <h2 id="toolTitle">Tool</h2>
-      <p id="toolDesc">This tool will be available soon.</p>
-      <button onclick="alert('Demo only!')">Try Now</button>
+    <div class="card">
+      <h2>2. AI Photo Enhancer</h2>
+      <p>Upload photos → automatically upscale them to 4K clarity with AI.</p>
+      <a href="#" class="btn">Launch</a>
     </div>
-  </div>
+    <div class="card">
+      <h2>3. Digital Learning Hub</h2>
+      <p>Access curated free courses and notes. A platform for knowledge seekers.</p>
+      <a href="#" class="btn">Explore</a>
+    </div>
+    <div class="card">
+      <h2>4. Passive Blog Generator</h2>
+      <p>AI creates trending blogs daily. Monetize via ads or affiliate links.</p>
+      <a href="#" class="btn">Start</a>
+    </div>
+    <div class="card">
+      <h2>5. Smart Resume Builder</h2>
+      <p>Generate professional resumes in minutes. Job seekers’ secret weapon.</p>
+      <a href="#" class="btn">Build</a>
+    </div>
+    <div class="card">
+      <h2>6. Auto E-Book Creator</h2>
+      <p>Turn your ideas into polished eBooks. Publish & sell online.</p>
+      <a href="#" class="btn">Create</a>
+    </div>
+    <div class="card">
+      <h2>7. AI Social Media Post Maker</h2>
+      <p>Instantly generate viral captions, posts, and stories to grow followers.</p>
+      <a href="#" class="btn">Try</a>
+    </div>
+    <div class="card">
+      <h2>8. Startup Name Generator</h2>
+      <p>Enter a keyword → AI suggests brandable names instantly.</p>
+      <a href="#" class="btn">Generate</a>
+    </div>
+    <div class="card">
+      <h2>9. Business Idea Evaluator</h2>
+      <p>Enter your startup idea → AI gives feedback and profit potential.</p>
+      <a href="#" class="btn">Test</a>
+    </div>
+    <div class="card">
+      <h2>10. Smart Quotes Generator</h2>
+      <p>Daily motivational & wisdom quotes for life and business.</p>
+      <a href="#" class="btn">Get Quote</a>
+    </div>
+  </section>
 
   <footer>
-    &copy; 2025 Franz Joshua Magdapat. All rights reserved.
+    © 2025 Franz Joshua Magdapat. All Rights Reserved.
   </footer>
 
-  <script>
-    function openTool(tool) {
-      const modal = document.getElementById("toolModal");
-      const title = document.getElementById("toolTitle");
-      const desc = document.getElementById("toolDesc");
-
-      const tools = {
-        converter: {title: "File Converter", desc: "Upload files and convert between PDF, DOCX, PNG, JPG, etc."},
-        photo: {title: "Photo Enhancer", desc: "AI upscales your photo to HD or 4K instantly."},
-        video: {title: "Video Enhancer", desc: "Smooth and upscale your videos to 4K."},
-        notes: {title: "Secure Notes", desc: "Encrypt your private notes securely."},
-        password: {title: "Password Generator", desc: "Generate super-strong random passwords."},
-        qr: {title: "QR Generator", desc: "Make QR codes for free."},
-        compress: {title: "Image Compressor", desc: "Reduce file size while keeping quality."},
-        text2speech: {title: "Text to Speech", desc: "Type text, hear it spoken."},
-        ai: {title: "Mini AI Chat", desc: "Ask questions and get simple AI answers."},
-        cloud: {title: "Cloud Storage (Demo)", desc: "Save files temporarily online."}
-      };
-
-      title.innerText = tools[tool].title;
-      desc.innerText = tools[tool].desc;
-      modal.style.display = "flex";
-    }
-
-    function closeModal() {
-      document.getElementById("toolModal").style.display = "none";
-    }
-
-    window.onclick = function(e) {
-      const modal = document.getElementById("toolModal");
-      if (e.target === modal) modal.style.display = "none";
-    }
-  </script>
 </body>
 </html>
