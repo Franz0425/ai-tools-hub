@@ -3,44 +3,216 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Toolbox Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Franz Tools Hub</title>
+  <style>
+    /* ===== RESET ===== */
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif;}
+
+    body {
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #000, #111);
+      border-bottom: 2px solid #ffd700;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #ffd700;
+    }
+    header p {
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #ffd700;
+    }
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: #ffd700;
+    }
+    .card p {
+      color: #bbb;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      border-top: 1px solid #333;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      text-align: center;
+      border: 1px solid #333;
+    }
+    .close-btn {
+      float: right;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ffd700;
+    }
+    .close-btn:hover {
+      color: #fff;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      background: #ffd700;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #e6c200;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>⚡ AI Toolbox Hub</h1>
-    <p>Your all-in-one free online tools</p>
+    <h1>⚡ Franz Tools Hub ⚡</h1>
+    <p>All-in-one free online tools</p>
   </header>
 
   <main>
-    <div class="tool-grid">
-      <button onclick="openTool('fileConverter')">📂 File Converter</button>
-      <button onclick="openTool('photoEnhancer')">🖼 Photo Enhancer</button>
-      <button onclick="openTool('summarizer')">📝 Text Summarizer</button>
-      <button onclick="openTool('writer')">✍ AI Writer</button>
-      <button onclick="openTool('grammar')">📖 Grammar Checker</button>
-      <button onclick="openTool('translator')">🌍 Translator</button>
-      <button onclick="openTool('password')">🔒 Password Generator</button>
-      <button onclick="openTool('converter')">📏 Unit & Currency Converter</button>
-      <button onclick="openTool('qrcode')">🔗 QR Generator</button>
-      <button onclick="openTool('meme')">😂 Meme Caption Generator</button>
+    <div class="grid">
+      <div class="card" onclick="openTool('converter')">
+        <h3>File Converter</h3>
+        <p>Convert between PDF, DOCX, PNG, JPG and more.</p>
+      </div>
+      <div class="card" onclick="openTool('photo')">
+        <h3>Photo Enhancer</h3>
+        <p>Upscale and sharpen your photos automatically.</p>
+      </div>
+      <div class="card" onclick="openTool('video')">
+        <h3>Video Enhancer</h3>
+        <p>AI-based smoother and 4K upscaler.</p>
+      </div>
+      <div class="card" onclick="openTool('notes')">
+        <h3>Secure Notes</h3>
+        <p>Write and encrypt private notes instantly.</p>
+      </div>
+      <div class="card" onclick="openTool('password')">
+        <h3>Password Generator</h3>
+        <p>Create strong & unique passwords.</p>
+      </div>
+      <div class="card" onclick="openTool('qr')">
+        <h3>QR Generator</h3>
+        <p>Create QR codes for links or text.</p>
+      </div>
+      <div class="card" onclick="openTool('compress')">
+        <h3>Image Compressor</h3>
+        <p>Shrink images without losing quality.</p>
+      </div>
+      <div class="card" onclick="openTool('text2speech')">
+        <h3>Text to Speech</h3>
+        <p>Convert text into natural voice audio.</p>
+      </div>
+      <div class="card" onclick="openTool('ai')">
+        <h3>Mini AI Chat</h3>
+        <p>Ask simple questions, get smart answers.</p>
+      </div>
+      <div class="card" onclick="openTool('cloud')">
+        <h3>Cloud Storage (Demo)</h3>
+        <p>Temporary file saving tool.</p>
+      </div>
     </div>
   </main>
 
-  <!-- Tool Windows -->
-  <section id="toolWindow" class="modal">
+  <!-- Modal -->
+  <div id="toolModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeTool()">&times;</span>
-      <div id="toolContent">
-        <!-- Dynamic tool content goes here -->
-      </div>
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="toolTitle">Tool</h2>
+      <p id="toolDesc">This tool will be available soon.</p>
+      <button onclick="alert('Demo only!')">Try Now</button>
     </div>
-  </section>
+  </div>
 
   <footer>
-    <p>© 2025 AI Toolbox Hub | Built by Franz Joshua Magdapat</p>
+    &copy; 2025 Franz Joshua Magdapat. All rights reserved.
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    function openTool(tool) {
+      const modal = document.getElementById("toolModal");
+      const title = document.getElementById("toolTitle");
+      const desc = document.getElementById("toolDesc");
+
+      const tools = {
+        converter: {title: "File Converter", desc: "Upload files and convert between PDF, DOCX, PNG, JPG, etc."},
+        photo: {title: "Photo Enhancer", desc: "AI upscales your photo to HD or 4K instantly."},
+        video: {title: "Video Enhancer", desc: "Smooth and upscale your videos to 4K."},
+        notes: {title: "Secure Notes", desc: "Encrypt your private notes securely."},
+        password: {title: "Password Generator", desc: "Generate super-strong random passwords."},
+        qr: {title: "QR Generator", desc: "Make QR codes for free."},
+        compress: {title: "Image Compressor", desc: "Reduce file size while keeping quality."},
+        text2speech: {title: "Text to Speech", desc: "Type text, hear it spoken."},
+        ai: {title: "Mini AI Chat", desc: "Ask questions and get simple AI answers."},
+        cloud: {title: "Cloud Storage (Demo)", desc: "Save files temporarily online."}
+      };
+
+      title.innerText = tools[tool].title;
+      desc.innerText = tools[tool].desc;
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("toolModal").style.display = "none";
+    }
+
+    window.onclick = function(e) {
+      const modal = document.getElementById("toolModal");
+      if (e.target === modal) modal.style.display = "none";
+    }
+  </script>
 </body>
 </html>
