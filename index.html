@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tools Hub - Free Online Tools</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0d0d0d;
+      color: #f2f2f2;
+    }
+    header {
+      background: linear-gradient(90deg, #000, #222);
+      color: gold;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background: #111;
+      border-bottom: 2px solid gold;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #f2f2f2;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+    nav button:hover {
+      background: gold;
+      color: black;
+      font-weight: bold;
+    }
+    .tool {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+    .ad {
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      margin: 15px 0;
+      padding: 15px;
+      border: 1px dashed gold;
+    }
+    .upload-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    input, textarea, button, select {
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 500px;
+    }
+    button {
+      background: gold;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <header>⚡ AI Tools Hub – 10 Free Online Tools ⚡</header>
+  <div class="ad">[Ad Space – Google AdSense Placeholder]</div>
+  
+  <nav>
+    <button onclick="openTool('pdf2word')">PDF → Word</button>
+    <button onclick="openTool('word2pdf')">Word → PDF</button>
+    <button onclick="openTool('imgconvert')">Image Converter</button>
+    <button onclick="openTool('compress')">Image Compressor</button>
+    <button onclick="openTool('enhance')">Photo Enhancer</button>
+    <button onclick="openTool('summarizer')">Summarizer</button>
+    <button onclick="openTool('grammar')">Grammar Checker</button>
+    <button onclick="openTool('tts')">Text-to-Speech</button>
+    <button onclick="openTool('qr')">QR Generator</button>
+    <button onclick="openTool('password')">Password Generator</button>
+  </nav>
+
+  <!-- TOOLS -->
+  <section id="pdf2word" class="tool active">
+    <h2>📄 PDF → Word Converter</h2>
+    <div class="upload-box">
+      <input type="file" accept="application/pdf">
+      <button>Convert</button>
+    </div>
+  </section>
+
+  <section id="word2pdf" class="tool">
+    <h2>📄 Word → PDF Converter</h2>
+    <div class="upload-box">
+      <input type="file" accept=".doc,.docx">
+      <button>Convert</button>
+    </div>
+  </section>
+
+  <section id="imgconvert" class="tool">
+    <h2>🖼️ Image Converter</h2>
+    <input type="file" accept="image/*">
+    <select>
+      <option>Convert to JPG</option>
+      <option>Convert to PNG</option>
+    </select>
+    <button>Convert</button>
+  </section>
+
+  <section id="compress" class="tool">
+    <h2>🗜️ Image Compressor</h2>
+    <input type="file" accept="image/*">
+    <button>Compress</button>
+  </section>
+
+  <section id="enhance" class="tool">
+    <h2>✨ Photo Enhancer (4K Upscale)</h2>
+    <input type="file" accept="image/*">
+    <button>Enhance</button>
+  </section>
+
+  <section id="summarizer" class="tool">
+    <h2>📝 Text Summarizer</h2>
+    <textarea rows="6" placeholder="Paste your text..."></textarea>
+    <button>Summarize</button>
+    <p><b>Summary:</b> <span id="summaryOut"></span></p>
+  </section>
+
+  <section id="grammar" class="tool">
+    <h2>✍️ Grammar Checker</h2>
+    <textarea rows="6" placeholder="Paste text..."></textarea>
+    <button>Check Grammar</button>
+    <p><b>Corrected:</b> <span id="grammarOut"></span></p>
+  </section>
+
+  <section id="tts" class="tool">
+    <h2>🔊 Text-to-Speech</h2>
+    <textarea rows="4" placeholder="Type text to speak..."></textarea>
+    <button onclick="speak()">Speak</button>
+  </section>
+
+  <section id="qr" class="tool">
+    <h2>📲 QR Code Generator</h2>
+    <input type="text" placeholder="Enter text or URL">
+    <button>Generate</button>
+    <div id="qrOut"></div>
+  </section>
+
+  <section id="password" class="tool">
+    <h2>🔐 Password Generator</h2>
+    <button onclick="generatePass()">Generate Strong Password</button>
+    <p><b>Password:</b> <span id="passOut"></span></p>
+  </section>
+
+  <div class="ad">[Ad Space – Google AdSense Placeholder]</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    function openTool(id) {
+      document.querySelectorAll('.tool').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function speak() {
+      let text = document.querySelector('#tts textarea').value;
+      let utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
+    }
+
+    function generatePass() {
+      let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+      let pass = "";
+      for (let i = 0; i < 16; i++) {
+        pass += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      document.getElementById("passOut").innerText = pass;
+    }
+  </script>
+</body>
+</html>
